@@ -82,7 +82,7 @@ class ModelSerializer(Serializer):
 
     def _get_m2m_fields(self):
         #related_m2m = [f.get_accessor_name() for f in self.opts.model._meta.get_all_related_many_to_many_objects()]
-        related_m2m = [f.get_accessor_name() for f for f in self.opts.model._meta.get_fields(include_hidden=True) if f.many_to_many and f.auto_created]
+        related_m2m = [f.get_accessor_name() for f in self.opts.model._meta.get_fields(include_hidden=True) if f.many_to_many and f.auto_created]
         m2m_fields = [f.name for f in self.opts.model._meta.local_many_to_many]
         m2m = m2m_fields + related_m2m
         return [f for f in self.opts.update_fields if f in m2m]
